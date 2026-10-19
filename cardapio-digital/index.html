@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lume Cardápio Digital</title>
+  <meta name="description" content="Cardápio digital do Lume, cozinha de fogo. Veja os pratos com foto, monte seu pedido e envie pelo WhatsApp.">
+  <meta name="theme-color" content="#F4EEE5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F0C0A" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23E2581F'/%3E%3Cpath d='M16 6c1.6 3.6 6 6.2 6 11a6 6 0 0 1-12 0c0-2.4 1.2-4 2.6-5.4.3 1.8 1.1 3 2.4 3.4-.6-3.4.2-6.4 1-9z' fill='%23FFF4E8'/%3E%3C/svg%3E">
+</head>
+<body>
+  <a class="skip" href="#cardapio">Pular para o cardápio</a>
+
+  <!-- Abertura -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__mark">
+      <svg class="flame" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c1.9 4.3 7.5 7.4 7.5 13.6a7.5 7.5 0 0 1-15 0c0-3 1.5-5 3.2-6.7.4 2.2 1.4 3.8 3 4.2-.8-4.2.3-8 1.3-11.1z"/></svg>
+      <span class="loader__word" id="loaderWord">Lume</span>
+    </div>
+    <div class="loader__bar"><span></span></div>
+  </div>
+
+  <!-- Topo -->
+  <header class="topbar" id="topbar">
+    <div class="topbar__inner container">
+      <a href="#inicio" class="brand" aria-label="Lume, voltar ao início">
+        <svg class="flame" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c1.9 4.3 7.5 7.4 7.5 13.6a7.5 7.5 0 0 1-15 0c0-3 1.5-5 3.2-6.7.4 2.2 1.4 3.8 3 4.2-.8-4.2.3-8 1.3-11.1z"/></svg>
+        <span class="brand__name" data-loja="nome">Lume</span>
+      </a>
+      <nav class="topnav" aria-label="Seções">
+        <a href="#cardapio">Cardápio</a>
+        <a href="#favoritos">Favoritos</a>
+        <button type="button" class="topnav__explore" data-open-explore>Galeria infinita</button>
+        <a href="#casa">A casa</a>
+      </nav>
+      <div class="topbar__actions">
+        <span class="status" id="statusAberto"><i></i><span>—</span></span>
+        <button type="button" class="icon-btn" id="themeBtn" aria-label="Alternar tema claro e escuro">
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6z"/></svg>
+        </button>
+        <button type="button" class="bag-btn" id="bagBtn" aria-label="Abrir sacola de pedido">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8h13l-1 12.2a1 1 0 0 1-1 .8h-9a1 1 0 0 1-1-.8z"/><path d="M9 8V6.8a3 3 0 0 1 6 0V8"/></svg>
+          <span class="bag-btn__label">Sacola</span>
+          <span class="bag-btn__count" id="bagCount" aria-live="polite">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- Hero -->
+    <section class="hero container" aria-labelledby="heroTitle">
+      <div class="hero__copy">
+        <p class="eyebrow"><span class="dot"></span><span><span data-loja="slogan">Cozinha de fogo</span> · desde <span data-loja="desde">2014</span></span></p>
+        <h1 class="hero__title" id="heroTitle">
+          <span class="line"><span>Fogo lento.</span></span>
+          <span class="line"><span><em>Sabor</em> inteiro.</span></span>
+        </h1>
+        <p class="hero__lead">Carnes na lenha, peixe do dia e a comida brasileira que a gente cresceu comendo. Escolha por aqui e mande o pedido direto no WhatsApp ou chame o garçom.</p>
+        <div class="hero__cta">
+          <a href="#cardapio" class="btn btn--primary">
+            Ver cardápio
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          </a>
+          <button type="button" class="btn btn--ghost" data-open-explore>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>
+            Galeria infinita
+          </button>
+        </div>
+        <ul class="hero__meta">
+          <li><strong data-loja="nota">4,9</strong><span>★ <span data-loja="avaliacoes">1.280</span> avaliações</span></li>
+          <li><strong id="heroHoje">—</strong><span>horário de hoje</span></li>
+          <li><strong>34</strong><span>pratos com foto</span></li>
+        </ul>
+      </div>
+      <div class="hero__wall" id="heroWall" aria-hidden="true"></div>
+    </section>
+
+    <!-- Faixa infinita -->
+    <div class="ribbon" aria-hidden="true">
+      <div class="ribbon__track" id="ribbonTrack"></div>
+    </div>
+
+    <!-- Favoritos -->
+    <section class="favs" id="favoritos" aria-labelledby="favsTitle">
+      <div class="container favs__head">
+        <div>
+          <p class="kicker">Os favoritos da casa</p>
+          <h2 class="h2" id="favsTitle">Quem vem uma vez, <em>volta</em> por estes.</h2>
+        </div>
+        <div class="favs__ctrl">
+          <span class="hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12h8M5 9l-3 3 3 3M19 9l3 3-3 3"/></svg>Arraste</span>
+          <button type="button" class="round-btn" id="favPrev" aria-label="Prato anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="round-btn" id="favNext" aria-label="Próximo prato"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="favs__viewport" id="favViewport">
+        <div class="favs__track" id="favTrack" role="list"></div>
+      </div>
+    </section>
+
+    <!-- Cardápio -->
+    <section class="menu" id="cardapio" aria-labelledby="menuTitle">
+      <div class="container menu__intro">
+        <p class="kicker">Cardápio completo</p>
+        <h2 class="h2" id="menuTitle">Escolha <em>sem pressa</em>.</h2>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar pratos"></div>
+      </div>
+
+      <div class="menubar" id="menubar">
+        <div class="container menubar__inner">
+          <div class="tabs" id="tabs">
+            <div class="tabs__scroller" id="tabsScroller">
+              <ul class="tabs__list" id="tabsList"></ul>
+              <ul class="tabs__list tabs__list--active" id="tabsActive" aria-hidden="true"></ul>
+            </div>
+          </div>
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+            <span class="sr-only">Buscar prato</span>
+            <input type="search" id="search" placeholder="Buscar prato ou ingrediente" autocomplete="off" enterkeyhint="search">
+            <button type="button" class="search__clear" id="searchClear" aria-label="Limpar busca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+          </label>
+        </div>
+      </div>
+
+      <div class="container" id="menuSections"></div>
+      <div class="container empty" id="empty" hidden>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="22" cy="22" r="13"/><path d="M32 32l9 9M17 22h10"/></svg>
+        <h3>Nada por aqui</h3>
+        <p>Não achamos pratos com esse nome ou filtro. Tente outra palavra.</p>
+        <button type="button" class="btn btn--ghost" id="emptyReset">Limpar busca e filtros</button>
+      </div>
+    </section>
+
+    <!-- A casa -->
+    <section class="house" id="casa" aria-labelledby="houseTitle">
+      <div class="container house__grid">
+        <figure class="house__photo">
+          <img data-foto="chef" data-w="1100" alt="Chef finalizando um prato na cozinha do Lume" loading="lazy" decoding="async" width="1100" height="1375">
+        </figure>
+        <div class="house__copy">
+          <p class="kicker">A casa</p>
+          <h2 class="h2" id="houseTitle">Uma grelha, <em>muita lenha</em> e quase nenhum atalho.</h2>
+          <p class="house__text">A cozinha gira em torno de uma parrilla a lenha de eucalipto. A costela fica doze horas no fogo, o pão fermenta de um dia pro outro e a moqueca sai na panela de barro. Os ingredientes vêm de produtores a menos de 200 km daqui.</p>
+          <div class="house__info">
+            <div>
+              <h3>Horários</h3>
+              <ul class="hours" id="hoursList"></ul>
+            </div>
+            <div>
+              <h3>Endereço</h3>
+              <p><span data-loja="endereco"></span><br><span data-loja="cidade"></span></p>
+              <h3>Reservas</h3>
+              <p><a class="link" id="reservaLink" href="#" target="_blank" rel="noopener">WhatsApp <span data-loja="telefone"></span></a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg class="flame" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c1.9 4.3 7.5 7.4 7.5 13.6a7.5 7.5 0 0 1-15 0c0-3 1.5-5 3.2-6.7.4 2.2 1.4 3.8 3 4.2-.8-4.2.3-8 1.3-11.1z"/></svg>
+        <span data-loja="nome">Lume</span>
+      </div>
+      <p class="footer__note">Preços em reais. Taxa de serviço de 10% opcional. Fotos meramente ilustrativas.</p>
+      <a class="link" id="instaLink" href="#" target="_blank" rel="noopener">@<span data-loja="instagram"></span></a>
+    </div>
+    <div class="footer__giant" aria-hidden="true" data-loja="nome">Lume</div>
+  </footer>
+
+  <!-- Barra da sacola (celular) -->
+  <button type="button" class="cartbar" id="cartbar" aria-label="Ver sacola">
+    <span class="cartbar__count" id="cartbarCount">0</span>
+    <span class="cartbar__label">Ver sacola</span>
+    <span class="cartbar__total" id="cartbarTotal">R$ 0,00</span>
+  </button>
+
+  <!-- Detalhe do prato -->
+  <div class="layer" id="detailLayer" hidden>
+    <div class="scrim" data-close></div>
+    <div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="detailName" tabindex="-1">
+      <div class="grabber" aria-hidden="true"><span></span></div>
+      <button type="button" class="close-btn" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+      <div class="detail__media"><img id="detailImg" alt=""></div>
+      <div class="detail__body" id="detailBody"></div>
+    </div>
+  </div>
+
+  <!-- Sacola -->
+  <div class="layer" id="cartLayer" hidden>
+    <div class="scrim" data-close></div>
+    <aside class="cart" id="cart" role="dialog" aria-modal="true" aria-labelledby="cartTitle" tabindex="-1">
+      <div class="grabber" aria-hidden="true"><span></span></div>
+      <header class="cart__head">
+        <h2 id="cartTitle">Sua sacola</h2>
+        <button type="button" class="close-btn" data-close aria-label="Fechar sacola"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+      </header>
+      <div class="cart__body" id="cartBody"></div>
+      <footer class="cart__foot" id="cartFoot"></footer>
+    </aside>
+  </div>
+
+  <!-- Galeria infinita -->
+  <div class="explore" id="explore" role="dialog" aria-modal="true" aria-label="Galeria infinita de pratos" hidden>
+    <div class="explore__world" id="exploreWorld"></div>
+    <div class="explore__ui">
+      <div class="explore__title">
+        <span class="kicker">Galeria infinita</span>
+        <p>Arraste em qualquer direção. Toque num prato para ver os detalhes.</p>
+      </div>
+      <button type="button" class="close-btn close-btn--lg" id="exploreClose" aria-label="Fechar galeria"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+    </div>
+    <div class="explore__cursor" id="exploreCursor" aria-hidden="true">Arraste</div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
